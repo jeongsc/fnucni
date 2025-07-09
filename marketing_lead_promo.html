@@ -8,11 +8,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Warm Neutrals & Professional Blue -->
-    <!-- Application Structure Plan: A thematic single-page scroll design with a sticky navigation bar for intuitive access. The structure begins with a strong Call-to-Action (Hero), followed by a new 'F&U Mission' section, then sections explaining the 'Process', 'Rewards', and 'Rules'. This structure guides the user from initial interest to deep understanding, making it more effective than a linear slide presentation. -->
+    <!-- Application Structure Plan: A thematic single-page scroll design with a sticky navigation bar for intuitive access. The structure begins with a strong Call-to-Action (Hero), followed by a new 'F&U Mission' section, then sections explaining the 'Process', 'Rewards', and 'Rules'. A new call-to-action section has been added at the end to encourage survey participation. This structure guides the user from initial interest to deep understanding, making it more effective than a linear slide presentation. -->
     <!-- Visualization & Content Choices: 
         - F&U Mission: Goal: Inform/Inspire. Method: Text with relevant Unicode emojis for visual emphasis. Justification: Provides context and motivation for the promotion.
         - Process Flow: Goal: Organize. Method: HTML/CSS flexbox with icons. Interaction: Visual progression. Justification: More engaging than a simple list.
         - Rewards: Goal: Inform/Motivate. Method: Card-based layout with icons. Justification: Highlights key benefits clearly.
+        - Final Call to Action: Goal: Engage. Method: Large, prominent text with a direct link to the survey. Justification: Reiterate the main goal and provide a final clear action.
     -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
@@ -62,6 +63,7 @@
                 <a href="#process" class="text-gray-600 hover:text-blue-600 text-sm sm:text-base">참여방법</a>
                 <a href="#rewards" class="text-gray-600 hover:text-blue-600 text-sm sm:text-base">보상안내</a>
                 <a href="#rules" class="text-gray-600 hover:text-blue-600 text-sm sm:text-base">세부규정</a>
+                <a href="#call-to-action-survey" class="text-gray-600 hover:text-blue-600 text-sm sm:text-base">설문 참여</a>
             </div>
              <a href="https://forms.gle/EijgW9vQYcZWbHdv8" target="_blank" class="md:hidden inline-block bg-blue-600 text-white font-bold py-2 px-4 rounded-lg text-sm hover:bg-blue-700 transition-colors duration-300">
                 참여하기
@@ -194,6 +196,19 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+        </section>
+
+        <section id="call-to-action-survey" class="bg-blue-600 text-white text-center py-16 sm:py-20 px-4 sm:px-6">
+            <div class="container mx-auto max-w-4xl">
+                <p class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-relaxed mb-8">
+                    F&U를 주변에 소개하기 어려우시다구요?<br>
+                    F&U가 어떤 업무를 하는지 설문조사에 넣어뒀습니다!<br>
+                    지금 바로 설문에 참여하여 확인해주세요!
+                </p>
+                <a href="https://forms.gle/EijgW9vQYcZWbHdv8" target="_blank" class="inline-block bg-white text-blue-600 font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-lg text-base sm:text-lg hover:bg-gray-200 transition-colors duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    설문조사 바로가기
+                </a>
             </div>
         </section>
     </main>
