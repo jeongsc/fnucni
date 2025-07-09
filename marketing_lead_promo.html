@@ -8,16 +8,16 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Warm Neutrals & Professional Blue -->
-    <!-- Application Structure Plan: A thematic single-page scroll design with a sticky navigation bar for intuitive access. The structure begins with a strong Call-to-Action (Hero), followed by sections explaining the 'Process', 'Rewards', and 'Rules'. The core interactive element is the 'Simulation Dashboard', where users can click buttons to dynamically update charts, transforming static tables into an engaging data exploration tool. This structure guides the user from initial interest to deep understanding, making it more effective than a linear slide presentation. -->
+    <!-- Application Structure Plan: A thematic single-page scroll design with a sticky navigation bar for intuitive access. The structure begins with a strong Call-to-Action (Hero), followed by sections explaining the 'Process', 'Rewards', and 'Rules'. The 'Simulation Dashboard' section has been replaced with an 'F&U Introduction' section featuring an image. This structure guides the user from initial interest to deep understanding, making it more effective than a linear slide presentation. -->
     <!-- Visualization & Content Choices: 
         - Process Flow: Goal: Organize. Method: HTML/CSS flexbox with icons. Interaction: Visual progression. Justification: More engaging than a simple list.
         - Rewards: Goal: Inform/Motivate. Method: Card-based layout with icons. Justification: Highlights key benefits clearly.
-        - Simulation: Goal: Compare/Analyze. Method: Two Chart.js canvas charts (Bar and Donut). Interaction: Buttons update chart data for different revenue scenarios (10억, 5억, 3억). Justification: Allows users to interactively explore the financial model, providing a much deeper understanding of the promotion's potential ROI compared to static tables. Library: Chart.js (Canvas).
+        - F&U Introduction: Goal: Inform. Method: Image display with introductory text. Justification: Provides essential company background visually.
     -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Noto+Sans+KR', sans-serif;
             background-color: #F8F9FA;
         }
         .chart-container {
@@ -34,156 +34,152 @@
                 height: 360px;
             }
         }
+        /* Ensure process step descriptions have consistent height for better alignment on desktop */
+        .process-description {
+            min-height: 3.5rem; /* Adjust as needed to fit 2 lines of text consistently */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        /* Adjust for mobile if needed, though flex-col and stacking usually handles this */
+        @media (max-width: 767px) {
+            .process-description {
+                min-height: unset; /* Remove min-height on mobile to allow natural wrapping */
+            }
+        }
     </style>
 </head>
 <body class="text-gray-800">
 
     <header class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <div class="text-2xl font-bold text-blue-600">
-                <span class="mr-2">💡</span> 새로운 기회, 함께 만들어요
+        <nav class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+            <div class="text-xl sm:text-2xl font-bold text-blue-600">
+                <span class="mr-1 sm:mr-2">💡</span> 새로운 기회, 함께 만들어요
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#process" class="text-gray-600 hover:text-blue-600">참여방법</a>
-                <a href="#rewards" class="text-gray-600 hover:text-blue-600">보상안내</a>
-                <a href="#simulation" class="text-gray-600 hover:text-blue-600">비용 시뮬레이션</a>
-                <a href="#rules" class="text-gray-600 hover:text-blue-600">세부규정</a>
+            <div class="hidden md:flex space-x-4 lg:space-x-8">
+                <a href="#process" class="text-gray-600 hover:text-blue-600 text-sm sm:text-base">참여방법</a>
+                <a href="#rewards" class="text-gray-600 hover:text-blue-600 text-sm sm:text-base">보상안내</a>
+                <a href="#fnu-intro" class="text-gray-600 hover:text-blue-600 text-sm sm:text-base">F&U 소개하기</a>
+                <a href="#rules" class="text-gray-600 hover:text-blue-600 text-sm sm:text-base">세부규정</a>
             </div>
-             <a href="https://forms.gle/EijgW9vQYcZWbHdv8" target="_blank" class="md:hidden inline-block bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+             <a href="https://forms.gle/EijgW9vQYcZWbHdv8" target="_blank" class="md:hidden inline-block bg-blue-600 text-white font-bold py-2 px-4 rounded-lg text-sm hover:bg-blue-700 transition-colors duration-300">
                 참여하기
             </a>
         </nav>
     </header>
 
     <main>
-        <section id="hero" class="bg-white text-center py-20 px-6">
+        <section id="hero" class="bg-white text-center py-16 sm:py-20 px-4 sm:px-6">
             <div class="container mx-auto">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">전사 구성원과 함께 만드는<br>새로운 비즈니스 기회!</h1>
-                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8">여러분의 소중한 네트워크와 통찰력이 회사의 성장을 이끄는 동력이 됩니다.<br>지금 바로 영업 리드 수집 프로모션에 참여하고 특별한 보상의 주인공이 되어보세요.</p>
-                <a href="https://forms.gle/EijgW9vQYcZWbHdv8" target="_blank" class="inline-block bg-blue-600 text-white font-bold py-4 px-8 rounded-lg text-lg hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
-                    설문조사 참여하고 리드 공유하기
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">F&U 전사 구성원이 함께 만드는<br>새로운 비즈니스 기회!</h1>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-6 sm:mb-8">여러분의 소중한 네트워크와 통찰력이 회사의 성장을 이끄는 동력이 됩니다.<br>지금 바로 마케팅 정보 수집 프로모션에 참여하고 특별한 보상의 주인공이 되어보세요.</p>
+                <a href="https://forms.gle/EijgW9vQYcZWbHdv8" target="_blank" class="inline-block bg-blue-600 text-white font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-lg text-base sm:text-lg hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
+                    설문조사 참여하고 프로모션 지급받기
                 </a>
             </div>
         </section>
 
-        <section id="process" class="py-20 px-6">
+        <section id="process" class="py-16 sm:py-20 px-4 sm:px-6">
             <div class="container mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold">프로모션 참여, 이렇게 진행됩니다</h2>
-                    <p class="text-gray-600 mt-2">간단한 4단계 프로세스를 통해 누구나 쉽게 참여하고 보상을 받을 수 있습니다.</p>
+                <div class="text-center mb-10 sm:mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-bold">프로모션 참여, 이렇게 진행됩니다</h2>
+                    <p class="text-base sm:text-lg text-gray-600 mt-2">간단한 4단계 프로세스를 통해 누구나 쉽게 참여하고 보상을 받을 수 있습니다.</p>
                 </div>
-                <div class="flex flex-col md:flex-row justify-center items-center md:space-x-8 space-y-8 md:space-y-0 max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-center items-stretch md:space-x-8 space-y-8 md:space-y-0 max-w-4xl mx-auto">
                     
-                    <div class="text-center flex-1">
-                        <div class="bg-blue-100 text-blue-600 rounded-full w-20 h-20 flex items-center justify-center mx-auto text-3xl font-bold">1</div>
-                        <h3 class="text-xl font-bold mt-4">배포 및 공지</h3>
-                        <p class="text-gray-600 mt-2">사내 채널을 통해<br>프로모션 공지 확인</p>
+                    <div class="text-center flex-1 flex flex-col items-center">
+                        <div class="bg-blue-100 text-blue-600 rounded-full w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mx-auto text-2xl sm:text-3xl font-bold">1</div>
+                        <h3 class="text-lg sm:text-xl font-bold mt-3 sm:mt-4">구성원 자율 참여</h3>
+                        <p class="text-sm sm:text-base text-gray-600 mt-1 sm:mt-2 process-description px-2">Unet, e-HR, F&U카톡 채널을 통해 상시 프로모션 확인 및 참여 가능</p>
                     </div>
                     
-                    <div class="text-gray-300 text-2xl hidden md:block">→</div>
+                    <div class="text-gray-300 text-xl sm:text-2xl hidden md:flex items-center">→</div>
 
-                    <div class="text-center flex-1">
-                        <div class="bg-blue-100 text-blue-600 rounded-full w-20 h-20 flex items-center justify-center mx-auto text-3xl font-bold">2</div>
-                        <h3 class="text-xl font-bold mt-4">정보 수집</h3>
-                        <p class="text-gray-600 mt-2">온라인 설문조사 참여,<br>리드 정보 자동 저장</p>
+                    <div class="text-center flex-1 flex flex-col items-center">
+                        <div class="bg-blue-100 text-blue-600 rounded-full w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mx-auto text-2xl sm:text-3xl font-bold">2</div>
+                        <h3 class="text-lg sm:text-xl font-bold mt-3 sm:mt-4">설문 작성</h3>
+                        <p class="text-sm sm:text-base text-gray-600 mt-1 sm:mt-2 process-description px-2">참여 구성원 정보 및 추천 대상자 기입</p>
                     </div>
                     
-                    <div class="text-gray-300 text-2xl hidden md:block">→</div>
+                    <div class="text-gray-300 text-xl sm:text-2xl hidden md:flex items-center">→</div>
 
-                    <div class="text-center flex-1">
-                        <div class="bg-blue-100 text-blue-600 rounded-full w-20 h-20 flex items-center justify-center mx-auto text-3xl font-bold">3</div>
-                        <h3 class="text-xl font-bold mt-4">확인 및 검증</h3>
-                        <p class="text-gray-600 mt-2">영업 담당자가<br>정보 사실 여부 확인</p>
+                    <div class="text-center flex-1 flex flex-col items-center">
+                        <div class="bg-blue-100 text-blue-600 rounded-full w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mx-auto text-2xl sm:text-3xl font-bold">3</div>
+                        <h3 class="text-xl font-bold mt-3 sm:mt-4">영업 부서 확인</h3>
+                        <p class="text-sm sm:text-base text-gray-600 mt-1 sm:mt-2 process-description px-2">영업 담당자 전화 인터뷰 진행</p>
                     </div>
 
-                    <div class="text-gray-300 text-2xl hidden md:block">→</div>
+                    <div class="text-gray-300 text-xl sm:text-2xl hidden md:flex items-center">→</div>
 
-                    <div class="text-center flex-1">
-                        <div class="bg-blue-100 text-blue-600 rounded-full w-20 h-20 flex items-center justify-center mx-auto text-3xl font-bold">4</div>
-                        <h3 class="text-xl font-bold mt-4">보상 지급</h3>
-                        <p class="text-gray-600 mt-2">대상 해당 시<br>단계별 프로모션 지급</p>
+                    <div class="text-center flex-1 flex flex-col items-center">
+                        <div class="bg-blue-100 text-blue-600 rounded-full w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mx-auto text-2xl sm:text-3xl font-bold">4</div>
+                        <h3 class="text-xl font-bold mt-3 sm:mt-4">보상 지급</h3>
+                        <p class="text-sm sm:text-base text-gray-600 mt-1 sm:mt-2 process-description px-2">대상 해당 시 단계별 프로모션 지급</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="rewards" class="bg-white py-20 px-6">
+        <section id="rewards" class="bg-white py-16 sm:py-20 px-4 sm:px-6">
             <div class="container mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold">참여만 해도 특별한 혜택이!</h2>
-                    <p class="text-gray-600 mt-2">여러분의 노력이 실질적인 보상으로 이어집니다. 3단계 보상 시스템을 확인해보세요.</p>
+                <div class="text-center mb-10 sm:mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-bold">참여만 해도 특별한 혜택이!</h2>
+                    <p class="text-base sm:text-lg text-gray-600 mt-2">F&U 구성원 여러분의 노력이 실질적인 보상으로 이어집니다. 3단계 보상 시스템을 확인해보세요.</p>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                    <div class="border rounded-lg p-8 text-center shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
-                        <div class="text-4xl mb-4">☕</div>
-                        <h3 class="text-xl font-bold text-blue-600">1단계: 참여 보상</h3>
-                        <p class="text-2xl font-bold my-4">스타벅스 기프티콘</p>
-                        <p class="text-gray-600">설문조사에 참여하여<br>리드 정보를 공유해주신<br>모든 분들께 드립니다.</p>
+                <div class="grid md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+                    <div class="border rounded-lg p-6 sm:p-8 text-center shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="text-3xl sm:text-4xl mb-3 sm:mb-4">☕</div>
+                        <h3 class="text-lg sm:text-xl font-bold text-blue-600">1단계: 참여 보상</h3>
+                        <p class="text-xl sm:text-2xl font-bold my-3 sm:my-4">스타벅스 기프티콘</p>
+                        <p class="text-sm sm:text-base text-gray-600">설문조사에 참여하여 리드 정보를 공유해주신 모든 F&U 구성원 분들께 드립니다.</p>
                     </div>
-                    <div class="border rounded-lg p-8 text-center shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
-                        <div class="text-4xl mb-4">🎁</div>
-                        <h3 class="text-xl font-bold text-blue-600">2단계: 입찰 보상</h3>
-                        <p class="text-2xl font-bold my-4">상품권 10만원</p>
-                        <p class="text-gray-600">공유해주신 정보가<br>실제 입찰 참여로<br>이어질 경우 지급됩니다.</p>
+                    <div class="border rounded-lg p-6 sm:p-8 text-center shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="text-3xl sm:text-4xl mb-3 sm:mb-4">🎁</div>
+                        <h3 class="text-lg sm:text-xl font-bold text-blue-600">2단계: 입찰 보상</h3>
+                        <p class="text-xl sm:text-2xl font-bold my-3 sm:my-4">상품권 10만원</p>
+                        <p class="text-sm sm:text-base text-gray-600">공유해주신 정보가 실제 입찰 참여로 이어질 경우 지급됩니다.</p>
                     </div>
-                    <div class="border rounded-lg p-8 text-center shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
-                        <div class="text-4xl mb-4">💰</div>
-                        <h3 class="text-xl font-bold text-blue-600">3단계: 수주 보상</h3>
-                        <p class="text-2xl font-bold my-4">계약매출액의 0.3%</p>
-                        <p class="text-gray-600">최종 수주 성공 시<br>계약 규모에 따라<br>파격적인 보상을 드립니다.<br>(예: 10억 계약 시 300만원)</p>
+                    <div class="border rounded-lg p-6 sm:p-8 text-center shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="text-3xl sm:text-4xl mb-3 sm:mb-4">💰</div>
+                        <h3 class="text-lg sm:text-xl font-bold text-blue-600">3단계: 수주 보상</h3>
+                        <p class="text-xl sm:text-2xl font-bold my-3 sm:my-4">계약매출액의 0.3%</p>
+                        <p class="text-sm sm:text-base text-gray-600">최종 수주 성공 시 계약 규모에 따라 파격적인 보상을 드립니다.<br>(예: 10억 계약 시 300만원)</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="simulation" class="py-20 px-6">
+        <section id="fnu-intro" class="py-16 sm:py-20 px-4 sm:px-6">
             <div class="container mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold">프로모션 효과 미리보기</h2>
-                    <p class="text-gray-600 mt-2">계약 규모에 따라 예상되는 비용과 최종 이익을 대화형 차트로 확인해보세요. 버튼을 클릭하여 시나리오를 변경할 수 있습니다.</p>
+                <div class="text-center mb-10 sm:mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-bold">F&U 소개하기</h2>
+                    <p class="text-base sm:text-lg text-gray-600 mt-2">주변에 F&U를 소개하실 때 아래 내용을 참고해주세요!</p>
                 </div>
-
-                <div class="flex justify-center space-x-4 mb-8">
-                    <button onclick="updateCharts('10억')" class="sim-btn bg-blue-600 text-white py-2 px-6 rounded-lg font-semibold">10억 수주 시</button>
-                    <button onclick="updateCharts('5억')" class="sim-btn bg-gray-200 text-gray-700 py-2 px-6 rounded-lg font-semibold">5억 수주 시</button>
-                    <button onclick="updateCharts('3억')" class="sim-btn bg-gray-200 text-gray-700 py-2 px-6 rounded-lg font-semibold">3억 수주 시</button>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto">
-                    <div>
-                        <h3 id="profit-chart-title" class="text-xl font-semibold text-center mb-4"></h3>
-                        <div class="chart-container">
-                            <canvas id="profitChart"></canvas>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 id="cost-chart-title" class="text-xl font-semibold text-center mb-4"></h3>
-                        <div class="chart-container">
-                            <canvas id="costBreakdownChart"></canvas>
-                        </div>
-                    </div>
+                <div class="flex justify-center px-2 sm:px-0">
+                    <img src="fnu_intoduce.jpg" alt="F&U 소개 이미지" class="max-w-full h-auto rounded-lg shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/600x400/E0E0E0/616161?text=F%26U+Image+Not+Found';">
                 </div>
             </div>
         </section>
 
-        <section id="rules" class="bg-white py-20 px-6">
+        <section id="rules" class="bg-white py-16 sm:py-20 px-4 sm:px-6">
             <div class="container mx-auto max-w-3xl">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold">프로모션 대상 확인 기준</h2>
-                    <p class="text-gray-600 mt-2">성공적인 프로모션을 위해 아래의 기준을 충족하는 리드를 공유해주세요.</p>
+                <div class="text-center mb-10 sm:mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-bold">프로모션 대상 확인 기준</h2>
+                    <p class="text-base sm:text-lg text-gray-600 mt-2">성공적인 프로모션을 위해 아래의 기준을 충족하는 리드를 공유해주세요.</p>
                 </div>
-                <div class="bg-gray-50 rounded-lg p-8 border">
-                    <ul class="space-y-4 text-lg">
+                <div class="bg-gray-50 rounded-lg p-6 sm:p-8 border">
+                    <ul class="space-y-3 sm:space-y-4 text-base sm:text-lg">
                         <li class="flex items-start">
-                            <span class="text-blue-500 font-bold mr-3">✔</span>
+                            <span class="text-blue-500 font-bold mr-2 sm:mr-3">✔</span>
                             <span>현재 당사가 수행 중인 고객사의 <strong class="text-blue-600">동일 업무가 아니어야</strong> 합니다.</span>
                         </li>
                         <li class="flex items-start">
-                            <span class="text-blue-500 font-bold mr-3">✔</span>
+                            <span class="text-blue-500 font-bold mr-2 sm:mr-3">✔</span>
                             <span>추천 대상자는 <strong class="text-blue-600">컨택센터/입찰 담당자, 임원 등</strong> 의사결정에 영향을 줄 수 있는 분이어야 합니다.</span>
                         </li>
                         <li class="flex items-start">
-                             <span class="text-blue-500 font-bold mr-3">✔</span>
+                             <span class="text-blue-500 font-bold mr-2 sm:mr-3">✔</span>
                             <span>추천 대상자의 소속 회사가 컨택센터를 <strong class="text-blue-600">운영 중이거나 관련 고민이 있다는 점을</strong> 사전에 확인해야 합니다.</span>
                         </li>
                     </ul>
@@ -192,175 +188,21 @@
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white text-center py-8">
+    <footer class="bg-gray-800 text-white text-center py-6 sm:py-8">
         <div class="container mx-auto">
-            <p class="font-bold mb-2">궁금한 점이 있다면 언제든지 문의해주세요!</p>
-            <p>여러분의 적극적인 참여가 회사의 성장에 큰 힘이 됩니다.</p>
+            <p class="font-bold mb-1 sm:mb-2 text-base sm:text-lg">궁금한 점이 있다면 언제든지 문의해주세요!</p>
+            <p class="text-sm sm:text-base">F&U 구성원 여러분의 적극적인 참여가 회사의 성장에 큰 힘이 됩니다.</p>
         </div>
     </footer>
 
     <script>
-        const simulationData = {
-            '10억': {
-                revenue: 1000000000,
-                profit: 30000000,
-                promotionCost: 4818000,
-                finalProfit: 25182000,
-                costBreakdown: {
-                    participation: 544000,
-                    bidding: 1274000,
-                    success: 3000000
-                }
-            },
-            '5억': {
-                revenue: 500000000,
-                profit: 15000000,
-                promotionCost: 3318000, 
-                finalProfit: 11682000,
-                costBreakdown: {
-                    participation: 544000,
-                    bidding: 1274000,
-                    success: 1500000 
-                }
-            },
-            '3억': {
-                revenue: 300000000,
-                profit: 9000000,
-                promotionCost: 2718000,
-                finalProfit: 6282000,
-                costBreakdown: {
-                    participation: 544000,
-                    bidding: 1274000,
-                    success: 900000 
-                }
-            }
-        };
-
-        let profitChart, costBreakdownChart;
-
-        const formatCurrency = (value) => new Intl.NumberFormat('ko-KR').format(value) + '원';
-
-        function createCharts(scenario) {
-            const data = simulationData[scenario];
-            
-            const profitCtx = document.getElementById('profitChart').getContext('2d');
-            profitChart = new Chart(profitCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['영업이익', '프로모션 총비용', '최종 이익'],
-                    datasets: [{
-                        label: '금액 (원)',
-                        data: [data.profit, data.promotionCost, data.finalProfit],
-                        backgroundColor: [
-                            'rgba(59, 130, 246, 0.7)',
-                            'rgba(255, 99, 132, 0.7)',
-                            'rgba(75, 192, 192, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(59, 130, 246, 1)',
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(75, 192, 192, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                label: (context) => formatCurrency(context.raw)
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: (value) => new Intl.NumberFormat('ko-KR', { notation: 'compact' }).format(value)
-                            }
-                        }
-                    }
-                }
-            });
-
-            const costCtx = document.getElementById('costBreakdownChart').getContext('2d');
-            costBreakdownChart = new Chart(costCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['참여 보상', '입찰 보상', '수주 성공 보상'],
-                    datasets: [{
-                        label: '비용',
-                        data: [
-                            data.costBreakdown.participation,
-                            data.costBreakdown.bidding,
-                            data.costBreakdown.success
-                        ],
-                        backgroundColor: [
-                            'rgba(255, 206, 86, 0.7)',
-                            'rgba(54, 162, 235, 0.7)',
-                            'rgba(75, 192, 192, 0.7)'
-                        ],
-                         borderColor: [
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(75, 192, 192, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        tooltip: {
-                             callbacks: {
-                                label: (context) => `${context.label}: ${formatCurrency(context.raw)}`
-                            }
-                        }
-                    }
-                }
-            });
-            
-            document.getElementById('profit-chart-title').innerText = `${scenario} 수주 시 손익 분석`;
-            document.getElementById('cost-chart-title').innerText = `${scenario} 수주 시 프로모션 비용 구성`;
-        }
-
-        function updateCharts(scenario) {
-            const data = simulationData[scenario];
-            
-            profitChart.data.datasets[0].data = [data.profit, data.promotionCost, data.finalProfit];
-            profitChart.update();
-
-            costBreakdownChart.data.datasets[0].data = [
-                data.costBreakdown.participation,
-                data.costBreakdown.bidding,
-                data.costBreakdown.success
-            ];
-            costBreakdownChart.update();
-            
-            document.getElementById('profit-chart-title').innerText = `${scenario} 수주 시 손익 분석`;
-            document.getElementById('cost-chart-title').innerText = `${scenario} 수주 시 프로모션 비용 구성`;
-            
-            document.querySelectorAll('.sim-btn').forEach(btn => {
-                if (btn.innerText.includes(scenario)) {
-                    btn.classList.add('bg-blue-600', 'text-white');
-                    btn.classList.remove('bg-gray-200', 'text-gray-700');
-                } else {
-                    btn.classList.add('bg-gray-200', 'text-gray-700');
-                    btn.classList.remove('bg-blue-600', 'text-white');
-                }
-            });
-        }
-
-        window.onload = () => {
-            createCharts('10억');
-        };
+        // 시뮬레이션 관련 스크립트 제거
+        // const simulationData = { ... };
+        // let profitChart, costBreakdownChart;
+        // const formatCurrency = (value) => ...;
+        // function createCharts(scenario) { ... }
+        // function updateCharts(scenario) { ... }
+        // window.onload = () => { createCharts('10억'); };
     </script>
 </body>
 </html>
